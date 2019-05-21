@@ -212,6 +212,7 @@
 // Load from local file
 - (void)_performLoadUnderlyingImageAndNotifyWithWebURL:(NSURL *)url {
     @try {
+
         [[SDWebImageDownloader sharedDownloader] downloadImageWithURL:url options:0 progress:^(NSInteger receivedSize, NSInteger expectedSize, NSURL * _Nullable targetURL) {
             if (expectedSize > 0) {
                 float progress = receivedSize / (float)expectedSize;
@@ -229,7 +230,7 @@
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self imageLoadingComplete];
             });
-
+            
         }];
     } @catch (NSException *e) {
         MWLog(@"Photo from web: %@", e);
